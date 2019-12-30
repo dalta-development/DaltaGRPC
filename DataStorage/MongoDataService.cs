@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataStorage
 {
-    class MongoDataService : IDatabaseService
+    public class MongoDataService : IDatabaseService
     {
         private readonly MongoClient _client;
         private readonly IMongoDatabase _db;
