@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServer.Protos";
+
+service Grades {
+
+}
+
+message GetGradeItemByUUIDRequest {
+
+}
+
+message GetGradeItemByUUIDReply {
+
+}

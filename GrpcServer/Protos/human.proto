@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServer.Protos";
+
+service Humans {
+
+}
+
+message GetEmployeeByIdRequest {
+	string UUID = 1;
+}
+
+message GetEmployeeByIdReply{
+	Employee employee = 1;
+}
+
+message Employee {
+	string UUID = 1;
+	repeated string Roles = 2;
+}
+
+message Person {
+	string firstName = 1;
+	string lastName = 2;
+	string address = 3;
+	string postalCode = 4;
+	string emailAddress = 5;
+	string BirthDate = 6;
+	string Gender = 7;
+}
+
+
