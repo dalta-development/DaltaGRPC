@@ -17,7 +17,13 @@ message GetEmployeeByIdReply{
 message Employee {
 	string UUID = 1;
 	Person person = 2;
-	repeated string Roles = 3;
+	repeated Role roles = 3;
+}
+
+enum Role {
+	ROLE_EMPLOYEE = 0;
+	ROLE_ADMINISTRATOR = 1;
+	ROLE_IT_DEPARTMENT = 2;
 }
 
 message Person {
