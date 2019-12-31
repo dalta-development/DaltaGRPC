@@ -11,6 +11,10 @@ message GetGradeItemByUUIDRequest {
 }
 
 message GetGradeItemByUUIDReply {
+	
+}
+
+message GradeItem {
 	string UUID = 1;
 	float numberGrade = 2;
 	string letterGrade = 3;

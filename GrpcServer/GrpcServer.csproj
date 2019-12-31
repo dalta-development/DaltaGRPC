@@ -5,11 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Protos\grade.proto" />
+    <None Remove="Protos\greet.proto" />
+    <None Remove="Protos\human.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\grade.proto" GrpcServices="Server" />
     <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\human.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.26.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.26.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="MongoDB.Bson" Version="2.10.0" />
   </ItemGroup>
 

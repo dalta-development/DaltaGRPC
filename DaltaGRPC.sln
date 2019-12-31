@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcServer", "GrpcServer\Gr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStorage", "DataStorage\DataStorage.csproj", "{975AC15E-2BD3-4492-9FA1-F0E5524D7FA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcTestClient", "GrpcTestClient\GrpcTestClient.csproj", "{F38F1F17-1A52-4EF6-A610-A3DD7BF20296}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{975AC15E-2BD3-4492-9FA1-F0E5524D7FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975AC15E-2BD3-4492-9FA1-F0E5524D7FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{975AC15E-2BD3-4492-9FA1-F0E5524D7FA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F38F1F17-1A52-4EF6-A610-A3DD7BF20296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F38F1F17-1A52-4EF6-A610-A3DD7BF20296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F38F1F17-1A52-4EF6-A610-A3DD7BF20296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F38F1F17-1A52-4EF6-A610-A3DD7BF20296}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

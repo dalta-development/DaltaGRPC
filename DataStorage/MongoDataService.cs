@@ -42,9 +42,17 @@ namespace DataStorage
             throw new NotImplementedException();
         }
 
-        Task<List<T>> IDatabaseService.Store<T>(List<T> items)
+        async Task<List<T>> IDatabaseService.StoreMany<T>(List<T> items)
         {
             var collection = _db.GetCollection<T>(nameof(T));
+            await collection.InsertManyAsync(items);
+            throw new NotImplementedException();
+        }
+
+        async Task<T> IDatabaseService.StoreOne<T>(T item)
+        {
+            var collection = _db.GetCollection<T>(typeof(T).Name);
+            await collection.InsertOneAsync(item);
             throw new NotImplementedException();
         }
 

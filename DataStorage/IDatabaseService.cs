@@ -7,7 +7,8 @@ namespace DataStorage
 {
     public interface IDatabaseService
     {
-        Task<List<T>> Store<T>(List<T> items);
+        Task<List<T>> StoreMany<T>(List<T> items);
+        Task<T> StoreOne<T>(T item);
         Task<T> FindOne<T>(Expression<Func<T, bool>> predicate);
         Task<T> UpdateOne<T>(Expression<Func<T, bool>> predicate, T item);
         Task<T> DeleteOne<T>(T item);
