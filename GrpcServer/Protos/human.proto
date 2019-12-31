@@ -3,7 +3,7 @@ syntax = "proto3";
 option csharp_namespace = "GrpcServer.Protos";
 
 service Humans {
-
+	rpc GetEmployeeById (GetEmployeeByIdRequest) returns (GetEmployeeByIdReply);
 }
 
 message GetEmployeeByIdRequest {
@@ -16,7 +16,8 @@ message GetEmployeeByIdReply{
 
 message Employee {
 	string UUID = 1;
-	repeated string Roles = 2;
+	Person person = 2;
+	repeated string Roles = 3;
 }
 
 message Person {
@@ -26,7 +27,13 @@ message Person {
 	string postalCode = 4;
 	string emailAddress = 5;
 	string BirthDate = 6;
-	string Gender = 7;
+	Gender gender = 7;
+}
+
+enum Gender {
+	GENDER_MALE = 0;
+	GENDER_FEMALE = 1;
+	GENDER_OTHER = 2;
 }
 
 

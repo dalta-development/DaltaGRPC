@@ -7,9 +7,16 @@ service Grades {
 }
 
 message GetGradeItemByUUIDRequest {
-
+	string UUID = 1;
 }
 
 message GetGradeItemByUUIDReply {
-
+	string UUID = 1;
+	float numberGrade = 2;
+	string letterGrade = 3;
+	int32 weight = 4;
+	string DateGiven = 5;
+	bool isLetterGrade = 6;
 }
+
+
