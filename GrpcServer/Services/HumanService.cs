@@ -21,30 +21,25 @@ namespace GrpcServer
 
         public override Task<GetEmployeeByIdReply> GetEmployeeById(GetEmployeeByIdRequest request, ServerCallContext context)
         {
-            Person person = new Person{
-                FirstName = "John",
-                LastName = "Doe",
-                Address = "Street",
-                PostalCode = "9293912",
-                EmailAddress = "email@example.com",
-                BirthDate = DateTime.Now.ToString(),
-                Gender = Gender.Male
-            };
-
-            Employee employee = new Employee
+            bool parseGuid = Guid.TryParse(request.Id, out var result);
+            if(parseGuid == true)
             {
-                Person = person,
-                UUID = Guid.NewGuid().ToString()
-            };
+                var employee = _db.FindOne<Employee>(x => x.Id == request.Id);
 
-            _db.StoreOne<Employee>(employee);
+                var employeeReply = new GetEmployeeByIdReply
+                {
+                    Employee = employee.Result
+                };
 
-            return Task.FromResult(new GetEmployeeByIdReply
+                return Task.FromResult(employeeReply);
+            }
+            else
             {
-                Employee = employee
-            });
-
-            
+                return Task.FromResult(new GetEmployeeByIdReply
+                {
+                    Employee = null
+                });
+            }
         }
     }
 }

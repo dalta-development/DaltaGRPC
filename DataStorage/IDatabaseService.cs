@@ -10,10 +10,10 @@ namespace DataStorage
         Task<List<T>> StoreMany<T>(List<T> items);
         Task<T> StoreOne<T>(T item);
         Task<T> FindOne<T>(Expression<Func<T, bool>> predicate);
-        Task<T> UpdateOne<T>(Expression<Func<T, bool>> predicate, T item);
-        Task<T> DeleteOne<T>(T item);
+        //Task<T> UpdateOne<T>(Expression<Func<T, bool>> predicate, T item);
+        Task<string> DeleteOne<T>(Expression<Func<T, bool>> predicate);
         Task<List<T>> FindMany<T>(Expression<Func<T, bool>> predicate);
-        Task<List<T>> UpdateMany<T>(Expression<Func<T, bool>> predicate, List<T> items);
-        Task<List<T>> DeleteMany<T>(Expression<Func<T, bool>> predicate, List<T> items);
+        //Task<List<T>> UpdateMany<T>(Expression<Func<T, bool>> predicate, List<T> items);
+        Task<long> DeleteMany<T>(Expression<Func<T, bool>> predicate);
     }
 }

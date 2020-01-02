@@ -9,14 +9,21 @@ namespace GrpcTestClient
         static void Main(string[] args)
         {
             var channel = GrpcChannel.ForAddress("https://localhost:5001");
-            var client = new Humans.HumansClient(channel);
+            Humans.HumansClient client = new Humans.HumansClient(channel);
 
             var reply = client.GetEmployeeById(new GetEmployeeByIdRequest
             {
-                UUID = "Nice"
+                Id = "qrr"
             });
 
-            Console.WriteLine(reply.Employee.UUID);
+            if(reply.Employee == null)
+            {
+                Console.WriteLine("ERR_WRONG_UUID");
+            }
+            else
+            {
+                Console.WriteLine(reply.Employee.ToString());
+            }
 
             Console.ReadLine();
         }

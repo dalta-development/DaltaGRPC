@@ -18,54 +18,63 @@ namespace DataStorage
             _db = _client.GetDatabase("DaltaDB");
         }
 
-        Task<List<T>> IDatabaseService.DeleteMany<T>(Expression<Func<T, bool>> predicate, List<T> items)
+        Task<long> IDatabaseService.DeleteMany<T>(Expression<Func<T, bool>> predicate)
         {
-            var collection = _db.GetCollection<T>(nameof(T));
-            throw new NotImplementedException();
+            var collection = _db.GetCollection<T>(typeof(T).Name);
+            var result = collection.DeleteMany<T>(predicate).DeletedCount;
+            return Task.FromResult(result);
         }
 
-        Task<T> IDatabaseService.DeleteOne<T>(T item)
+        Task<string> IDatabaseService.DeleteOne<T>(Expression<Func<T, bool>> predicate)
         {
-            var collection = _db.GetCollection<T>(nameof(T));
-            throw new NotImplementedException();
+            var collection = _db.GetCollection<T>(typeof(T).Name);
+            var result = collection.DeleteOneAsync<T>(predicate);
+            return Task.FromResult(result.Result.ToString());
         }
 
-        Task<List<T>> IDatabaseService.FindMany<T>(Expression<Func<T, bool>> predicate)
+        async Task<List<T>> IDatabaseService.FindMany<T>(Expression<Func<T, bool>> predicate)
         {
-            var collection = _db.GetCollection<T>(nameof(T));
-            throw new NotImplementedException();
+            var collection = _db.GetCollection<T>(typeof(T).Name);
+            var result = await collection.Find<T>(predicate).ToListAsync();
+            return result;
         }
 
-        Task<T> IDatabaseService.FindOne<T>(Expression<Func<T, bool>> predicate)
+        async Task<T> IDatabaseService.FindOne<T>(Expression<Func<T, bool>> predicate)
         {
-            var collection = _db.GetCollection<T>(nameof(T));
-            throw new NotImplementedException();
+            var collection = _db.GetCollection<T>(typeof(T).Name);
+            var result = await collection.Find<T>(predicate).SingleAsync();
+            return result;
         }
 
         async Task<List<T>> IDatabaseService.StoreMany<T>(List<T> items)
         {
-            var collection = _db.GetCollection<T>(nameof(T));
+            var collection = _db.GetCollection<T>(typeof(T).Name);
             await collection.InsertManyAsync(items);
-            throw new NotImplementedException();
+            return items;
         }
 
         async Task<T> IDatabaseService.StoreOne<T>(T item)
         {
             var collection = _db.GetCollection<T>(typeof(T).Name);
             await collection.InsertOneAsync(item);
-            throw new NotImplementedException();
+            return item;
         }
 
-        Task<List<T>> IDatabaseService.UpdateMany<T>(Expression<Func<T, bool>> predicate, List<T> items)
-        {
-            var collection = _db.GetCollection<T>(nameof(T));
-            throw new NotImplementedException();
-        }
+        //async Task<List<T>> IDatabaseService.UpdateMany<T>(Expression<Func<T, bool>> predicate, List<T> items)
+        //{
+        //    var collection = _db.GetCollection<T>(typeof(T).Name);
+        //    items.ForEach(x =>
+        //    {
 
-        Task<T> IDatabaseService.UpdateOne<T>(Expression<Func<T, bool>> predicate, T item)
-        {
-            var collection = _db.GetCollection<T>(nameof(T));
-            throw new NotImplementedException();
-        }
+        //    });
+        //    throw new NotImplementedException();
+        //}
+
+        //async Task<T> IDatabaseService.UpdateOne<T>(Expression<Func<T, bool>> predicate, T item)
+        //{
+        //    var collection = _db.GetCollection<T>(typeof(T).Name);
+        //    await collection.UpdateOneAsync(predicate, item);
+        //    throw new NotImplementedException();
+        //}
     }
 }

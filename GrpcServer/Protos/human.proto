@@ -9,7 +9,7 @@ service Humans {
 }
 
 message GetEmployeeByIdRequest {
-	string UUID = 1;
+	string _id = 1;
 }
 
 message GetEmployeeByIdReply{
@@ -17,9 +17,9 @@ message GetEmployeeByIdReply{
 }
 
 message Employee {
-	string UUID = 1;
+	string _id = 1;
 	Person person = 2;
-	Role role = 3;
+	repeated Role roles = 3;
 }
 
 enum Role {
