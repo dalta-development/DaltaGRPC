@@ -9,27 +9,32 @@ namespace GrpcTestClient
         static void Main(string[] args)
         {
             var channel = GrpcChannel.ForAddress("https://localhost:5001");
-            Humans.HumansClient client = new Humans.HumansClient(channel);
+            Employees.EmployeesClient client = new Employees.EmployeesClient(channel);
 
-            string guid = "2164e8d2-9f7e-4a4b-8bee-55d3bb32a3ae";
+            string guid = "d5ce221c-5d4b-4746-8d2b-b1d6a613fd0f";
 
-            var reply = client.EditEmployeeById(new EditEmployeeRequest
+            //var reply = client.EditEmployeeById(new EditEmployeeRequest
+            //{
+            //    Employee = new Employee
+            //    {
+            //        Id = guid,
+            //        Person = new Person
+            //        {
+            //            Address = "Address",
+            //            BirthDate = DateTime.Now.ToString(),
+            //            EmailAddress = "example@example.com",
+            //            FirstName = "Jenny",
+            //            Gender = Gender.Other,
+            //            LastName = "Johns",
+            //            PostalCode = "1010 AC"
+            //        }
+            //    },
+            //    EmployeeID = guid
+            //});
+
+            var reply = client.GetEmployeeById(new GetEmployeeByIdRequest
             {
-                Employee = new Employee
-                {
-                    Id = guid,
-                    Person = new Person
-                    {
-                        Address = "Address",
-                        BirthDate = DateTime.Now.ToString(),
-                        EmailAddress = "edited@edited.org",
-                        FirstName = "Jenny",
-                        Gender = Gender.Male,
-                        LastName = "Johns",
-                        PostalCode = "1010 AB"
-                    }
-                },
-                EmployeeID = guid
+                Id = guid
             });
 
             if(reply.Employee == null)

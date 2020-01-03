@@ -5,15 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Protos\employee.proto" />
     <None Remove="Protos\grade.proto" />
-    <None Remove="Protos\greet.proto" />
-    <None Remove="Protos\human.proto" />
   </ItemGroup>
 
   <ItemGroup>
     <Protobuf Include="Protos\grade.proto" GrpcServices="Server" />
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
-    <Protobuf Include="Protos\human.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\employee.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>

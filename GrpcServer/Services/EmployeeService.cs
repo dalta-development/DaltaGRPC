@@ -8,12 +8,12 @@ using Microsoft.Extensions.Logging;
 
 namespace GrpcServer
 {
-    public class HumanService : Humans.HumansBase
+    public class EmployeeService : Employees.EmployeesBase
     {
-        private readonly ILogger<HumanService> _logger;
+        private readonly ILogger<EmployeeService> _logger;
         private readonly IDatabaseService _db;
 
-        public HumanService(ILogger<HumanService> logger, IDatabaseService database)
+        public EmployeeService(ILogger<EmployeeService> logger, IDatabaseService database)
         {
             _logger = logger;
             _db = database;

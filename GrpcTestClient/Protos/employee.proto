@@ -4,7 +4,7 @@ option csharp_namespace = "GrpcServer";
 
 package humans;
 
-service Humans {
+service Employees {
 	rpc GetEmployeeById (GetEmployeeByIdRequest) returns (GetEmployeeByIdReply);
 	rpc CreateEmployee (CreateEmployeeRequest) returns (CreateEmployeeReply);
 	rpc EditEmployeeById (EditEmployeeRequest) returns (EditEmployeeReply);
@@ -40,6 +40,7 @@ message Employee {
 	string _id = 1;
 	Person person = 2;
 	repeated Role roles = 3;
+	bool isActive = 4;
 }
 
 enum Role {
