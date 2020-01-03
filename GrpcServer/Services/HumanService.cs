@@ -61,5 +61,14 @@ namespace GrpcServer
                 });
             }
         }
+
+        public override Task<EditEmployeeReply> EditEmployeeById(EditEmployeeRequest request, ServerCallContext context)
+        {
+            _db.UpdateOne<Employee>(x => x.Id == request.EmployeeID, request.Employee);
+            return Task.FromResult(new EditEmployeeReply
+            {
+                Employee = request.Employee
+            });
+        }
     }
 }

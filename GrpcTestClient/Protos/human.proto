@@ -7,6 +7,7 @@ package humans;
 service Humans {
 	rpc GetEmployeeById (GetEmployeeByIdRequest) returns (GetEmployeeByIdReply);
 	rpc CreateEmployee (CreateEmployeeRequest) returns (CreateEmployeeReply);
+	rpc EditEmployeeById (EditEmployeeRequest) returns (EditEmployeeReply);
 }
 
 message GetEmployeeByIdRequest {

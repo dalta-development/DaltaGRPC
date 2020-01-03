@@ -60,21 +60,21 @@ namespace DataStorage
             return item;
         }
 
-        //async Task<List<T>> IDatabaseService.UpdateMany<T>(Expression<Func<T, bool>> predicate, List<T> items)
-        //{
-        //    var collection = _db.GetCollection<T>(typeof(T).Name);
-        //    items.ForEach(x =>
-        //    {
+        async Task<List<T>> IDatabaseService.UpdateMany<T>(Expression<Func<T, bool>> predicate, List<T> items)
+        {
+            var collection = _db.GetCollection<T>(typeof(T).Name);
+            items.ForEach(x =>
+            {
+                collection.ReplaceOne(predicate, x);
+            });
+            return items;
+        }
 
-        //    });
-        //    throw new NotImplementedException();
-        //}
-
-        //async Task<T> IDatabaseService.UpdateOne<T>(Expression<Func<T, bool>> predicate, T item)
-        //{
-        //    var collection = _db.GetCollection<T>(typeof(T).Name);
-        //    await collection.UpdateOneAsync(predicate, item);
-        //    throw new NotImplementedException();
-        //}
+        async Task<T> IDatabaseService.UpdateOne<T>(Expression<Func<T, bool>> predicate, T item)
+        {
+            var collection = _db.GetCollection<T>(typeof(T).Name);
+            await collection.ReplaceOneAsync(predicate, item);
+            return item;
+        }
     }
 }

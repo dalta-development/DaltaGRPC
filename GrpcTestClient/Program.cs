@@ -11,22 +11,25 @@ namespace GrpcTestClient
             var channel = GrpcChannel.ForAddress("https://localhost:5001");
             Humans.HumansClient client = new Humans.HumansClient(channel);
 
-            var reply = client.CreateEmployee(new CreateEmployeeRequest
+            string guid = "2164e8d2-9f7e-4a4b-8bee-55d3bb32a3ae";
+
+            var reply = client.EditEmployeeById(new EditEmployeeRequest
             {
                 Employee = new Employee
                 {
-                    Id = "placeholder",
+                    Id = guid,
                     Person = new Person
                     {
                         Address = "Address",
                         BirthDate = DateTime.Now.ToString(),
-                        EmailAddress = "Yeet@yeet.org",
+                        EmailAddress = "edited@edited.org",
                         FirstName = "Jenny",
-                        Gender = Gender.Female,
+                        Gender = Gender.Male,
                         LastName = "Johns",
-                        PostalCode = "182838"
+                        PostalCode = "1010 AB"
                     }
-                }
+                },
+                EmployeeID = guid
             });
 
             if(reply.Employee == null)
