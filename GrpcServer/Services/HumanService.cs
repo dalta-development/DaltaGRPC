@@ -41,5 +41,25 @@ namespace GrpcServer
                 });
             }
         }
+
+        public override Task<CreateEmployeeReply> CreateEmployee(CreateEmployeeRequest request, ServerCallContext context)
+        {
+            try
+            {
+                request.Employee.Id = Guid.NewGuid().ToString();
+                _db.StoreOne(request.Employee);
+                return Task.FromResult(new CreateEmployeeReply
+                {
+                    Employee = request.Employee
+                });
+            }
+            catch(Exception e)
+            {
+                return Task.FromResult(new CreateEmployeeReply
+                {
+                    Employee = null
+                });
+            }
+        }
     }
 }

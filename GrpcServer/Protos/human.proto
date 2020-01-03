@@ -6,6 +6,7 @@ package humans;
 
 service Humans {
 	rpc GetEmployeeById (GetEmployeeByIdRequest) returns (GetEmployeeByIdReply);
+	rpc CreateEmployee (CreateEmployeeRequest) returns (CreateEmployeeReply);
 }
 
 message GetEmployeeByIdRequest {
@@ -13,6 +14,24 @@ message GetEmployeeByIdRequest {
 }
 
 message GetEmployeeByIdReply{
+	Employee employee = 1;
+}
+
+message CreateEmployeeRequest{
+	Employee employee = 1;
+	string schoolID = 2;
+}
+
+message CreateEmployeeReply{
+	Employee employee = 1;
+}
+
+message EditEmployeeRequest {
+	string employeeID = 1;
+	Employee employee = 2;
+}
+
+message EditEmployeeReply {
 	Employee employee = 1;
 }
 
