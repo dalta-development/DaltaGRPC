@@ -11,7 +11,7 @@ namespace IdentityServer
         public static IEnumerable<ApiResource> Apis =>
             new List<ApiResource>
             {
-            new ApiResource("api1", "My API")
+                new ApiResource("api1", "My API")
             };
 
         public static IEnumerable<Client> Clients =>
@@ -31,6 +31,12 @@ namespace IdentityServer
                     },
 
                     // scopes that client has access to
+                    AllowedScopes = { "api1" }
+                },
+                new Client
+                {
+                    ClientId = "client_console",
+                    AllowedGrantTypes = GrantTypes.Code,
                     AllowedScopes = { "api1" }
                 }
             };

@@ -1,51 +1,47 @@
 ﻿using Grpc.Net.Client;
 using GrpcServer;
+using IdentityModel.Client;
 using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace GrpcTestClient
 {
     class Program
     {
-        static void Main(string[] args)
+        private static async Task Main()
         {
-            var channel = GrpcChannel.ForAddress("https://localhost:5001");
-            Employees.EmployeesClient client = new Employees.EmployeesClient(channel);
+            // discover endpoints from metadata
+            var client = new HttpClient();
 
-            string guid = "d5ce221c-5d4b-4746-8d2b-b1d6a613fd0f";
-
-            //var reply = client.EditEmployeeById(new EditEmployeeRequest
-            //{
-            //    Employee = new Employee
-            //    {
-            //        Id = guid,
-            //        Person = new Person
-            //        {
-            //            Address = "Address",
-            //            BirthDate = DateTime.Now.ToString(),
-            //            EmailAddress = "example@example.com",
-            //            FirstName = "Jenny",
-            //            Gender = Gender.Other,
-            //            LastName = "Johns",
-            //            PostalCode = "1010 AC"
-            //        }
-            //    },
-            //    EmployeeID = guid
-            //});
-
-            var reply = client.GetEmployeeById(new GetEmployeeByIdRequest
+            var disco = await client.GetDiscoveryDocumentAsync("http://localhost:5000");
+            if (disco.IsError)
             {
-                Id = guid
+                Console.WriteLine(disco.Error);
+                return;
+            }
+
+            // request token
+            var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
+            {
+                Address = disco.TokenEndpoint,
+                ClientId = "client",
+                ClientSecret = "secret",
+
+                Scope = "api1"
             });
 
-            if(reply.Employee == null)
+            if (tokenResponse.IsError)
             {
-                Console.WriteLine("ERR_DB_ERROR");
-            }
-            else
-            {
-                Console.WriteLine(reply.Employee.ToString());
+                Console.WriteLine(tokenResponse.Error);
+                return;
             }
 
+            Console.WriteLine(tokenResponse.AccessToken);
+            Console.WriteLine("\n\n");
+
+            Console.ReadLine();
+            Console.ReadLine();
             Console.ReadLine();
         }
     }

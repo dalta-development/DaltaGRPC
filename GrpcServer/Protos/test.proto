@@ -1,8 +1,6 @@
-syntax = "proto3";
+﻿syntax = "proto3";
 
 option csharp_namespace = "GrpcServer";
-
-package test;
 
 service Tester {
 	rpc Test (TestRequest) returns (TestReply);
@@ -15,3 +13,6 @@ message TestRequest {
 message TestReply {
 	string message = 1;
 }
+
+
+
