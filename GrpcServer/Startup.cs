@@ -1,4 +1,5 @@
 ﻿using DataStorage;
+using GrpcServer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -45,6 +46,7 @@ namespace GrpcServer
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<EmployeeService>();
+                endpoints.MapGrpcService<TesterService>();
 
                 endpoints.MapGet("/", async context =>
                 {

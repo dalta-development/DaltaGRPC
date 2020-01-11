@@ -24,10 +24,9 @@ namespace GrpcTestClient
             // request token
             var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
             {
-                Address = disco.TokenEndpoint,
+                Address = disco.TokenEndpoint, 
                 ClientId = "client",
                 ClientSecret = "secret",
-
                 Scope = "api1"
             });
 
