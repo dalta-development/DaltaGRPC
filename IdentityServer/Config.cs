@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4;
 
 namespace IdentityServer
 {
@@ -38,6 +39,23 @@ namespace IdentityServer
                     ClientId = "client_console",
                     AllowedGrantTypes = GrantTypes.Code,
                     AllowedScopes = { "api1" }
+                },
+                new Client
+                {
+                    ClientId = "implicitclient",
+
+                    AllowedGrantTypes = GrantTypes.Implicit,
+
+                    RedirectUris = { "https://xamarin-oidc-sample/redirect"},
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api1"
+                    },
+
+                    AllowAccessTokensViaBrowser = true
                 }
             };
     }

@@ -14,7 +14,7 @@ namespace AuthTestApp
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new MainPage();
+            MainPage = new LoginView();
         }
 
         protected override void OnStart()
